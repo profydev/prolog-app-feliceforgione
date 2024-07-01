@@ -49,6 +49,21 @@ describe("Sidebar Navigation", () => {
       // check that text is not rendered
       cy.get("nav").contains("Issues").should("not.exist");
     });
+
+    it("has proper size logo", () => {
+      cy.get("img[src='/icons/logo-large.svg']").should("be.visible");
+      cy.get("img[src='/icons/logo-small.svg']").should("not.be.visible");
+
+      // collapse navigation
+      cy.get("nav").contains("Collapse").click();
+      cy.get("img[src='/icons/logo-small.svg']").should("be.visible");
+      cy.get("img[src='/icons/logo-large.svg']").should("not.be.visible");
+
+      // Change to landscape mode
+      cy.viewport("iphone-8", "landscape");
+      cy.get("img[src='/icons/logo-large.svg']").should("be.visible");
+      cy.get("img[src='/icons/logo-small.svg']").should("not.be.visible");
+    });
   });
 
   context("mobile resolution", () => {
@@ -97,6 +112,11 @@ describe("Sidebar Navigation", () => {
       cy.get("img[alt='close menu']").click();
       cy.wait(500);
       isNotInViewport("nav");
+    });
+
+    it("has proper size logo", () => {
+      cy.get("img[src='/icons/logo-large.svg']").should("be.visible");
+      cy.get("img[src='/icons/logo-small.svg']").should("not.be.visible");
     });
   });
 });

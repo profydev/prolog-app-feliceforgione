@@ -18,9 +18,7 @@ describe("Footer", () => {
     });
 
     it("has logo", () => {
-      cy.get("footer")
-        .get("img[src='/icons/logo-small.svg']")
-        .should("be.visible");
+      cy.get("footer img[src='/icons/logo-small.svg']").should("be.visible");
     });
 
     it("has correct version", () => {

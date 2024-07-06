@@ -51,18 +51,24 @@ describe("Sidebar Navigation", () => {
     });
 
     it("has proper size logo", () => {
-      cy.get("img[src='/icons/logo-large.svg']").should("be.visible");
-      cy.get("img[src='/icons/logo-small.svg']").should("not.be.visible");
+      cy.get("header img[src='/icons/logo-large.svg']").should("be.visible");
+      cy.get("header > img[src='/icons/logo-small.svg']").should(
+        "not.be.visible",
+      );
 
       // collapse navigation
       cy.get("nav").contains("Collapse").click();
-      cy.get("img[src='/icons/logo-small.svg']").should("be.visible");
-      cy.get("img[src='/icons/logo-large.svg']").should("not.be.visible");
+      cy.get("header >  img[src='/icons/logo-small.svg']").should("be.visible");
+      cy.get("header >  img[src='/icons/logo-large.svg']").should(
+        "not.be.visible",
+      );
 
       // Change to landscape mode
       cy.viewport("iphone-8", "landscape");
-      cy.get("img[src='/icons/logo-large.svg']").should("be.visible");
-      cy.get("img[src='/icons/logo-small.svg']").should("not.be.visible");
+      cy.get("header >  img[src='/icons/logo-large.svg']").should("be.visible");
+      cy.get("header >  img[src='/icons/logo-small.svg']").should(
+        "not.be.visible",
+      );
     });
   });
 
@@ -115,8 +121,10 @@ describe("Sidebar Navigation", () => {
     });
 
     it("has proper size logo", () => {
-      cy.get("img[src='/icons/logo-large.svg']").should("be.visible");
-      cy.get("img[src='/icons/logo-small.svg']").should("not.be.visible");
+      cy.get("header > img[src='/icons/logo-large.svg']").should("be.visible");
+      cy.get("header > img[src='/icons/logo-small.svg']").should(
+        "not.be.visible",
+      );
     });
   });
 });

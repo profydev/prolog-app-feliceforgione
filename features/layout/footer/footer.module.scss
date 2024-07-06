@@ -8,7 +8,7 @@
 .footer {
   display: flex;
   height: misc.$footer-height;
-  padding: 12px;
+  padding: space.$s3;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -20,26 +20,26 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 32px;
+    gap: space.$s8;
     align-self: stretch;
 
     .content {
       display: flex;
-      padding: 24px;
+      padding: space.$s6;
       flex-direction: column;
       align-items: center;
-      gap: 24px;
+      gap: space.$s6;
       align-self: stretch;
     }
   }
 
   @media (min-width: breakpoint.$desktop) {
-    height: 60px;
+    height: misc.$footer-height-desktop;
     padding: 0;
 
     .container {
       display: flex;
-      padding: 0 32px;
+      padding: 0 space.$s8;
       flex-direction: column;
       align-items: flex-start;
       align-self: stretch;
@@ -60,7 +60,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 24px;
+  gap: space.$s6;
 
   a {
     color: color.$gray-500;

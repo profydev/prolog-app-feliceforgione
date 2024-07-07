@@ -1,6 +1,5 @@
 import Link from "next/link";
 import styles from "./footer.module.scss";
-import { version } from "../../../package.json";
 
 export function Footer() {
   return (
@@ -17,7 +16,9 @@ export function Footer() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/icons/logo-small.svg" alt="logo" />
           </div>
-          <div className={styles.footerVersion}>Version: {version}</div>
+          <div className={styles.footerVersion}>
+            Version: {process.env.AppVersion}
+          </div>
         </div>
       </div>
     </footer>

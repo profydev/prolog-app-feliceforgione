@@ -5,21 +5,33 @@
 @use "@styles/misc";
 
 .container {
-  display: flex;
-  flex-direction: column;
+  min-height: 100vh;
+  display: grid;
+  grid-template:
+    "navigation" auto
+    "content" 1fr
+    "footer" auto / 1fr;
   background: color.$gray-900;
 
   @media (min-width: breakpoint.$desktop) {
-    flex-direction: row;
+    display: grid;
+    grid-template:
+      "navigation content" 1fr
+      "navigation footer" auto / auto 1fr;
   }
 }
 
 .main {
-  flex: 1;
+  display: flex;
+  grid-area: content;
+}
+
+.sidebarNavigation {
+  grid-area: navigation;
 }
 
 .contentContainer {
-  min-height: calc(100vh - 2 * space.$s8 - misc.$header-height);
+  flex: 1;
   margin-top: misc.$header-height;
   padding: space.$s8 space.$s3;
   background: white;

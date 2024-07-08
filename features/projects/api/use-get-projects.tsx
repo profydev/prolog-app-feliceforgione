@@ -3,5 +3,5 @@ import { getProjects } from "@api/projects";
 import type { Project } from "@api/projects.types";
 
 export function useGetProjects() {
-  return useQuery<Project[], Error>(["projects"], getProjects);
+  return useQuery<Project[], Error>(["projects"], getProjects, { retry: 1 });
 }

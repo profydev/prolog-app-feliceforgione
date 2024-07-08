@@ -1,3 +1,4 @@
+import { testSpinner } from "cypress/support/utils";
 import mockIssues1 from "../fixtures/issues-page-1.json";
 import mockIssues2 from "../fixtures/issues-page-2.json";
 import mockIssues3 from "../fixtures/issues-page-3.json";
@@ -84,4 +85,12 @@ describe("Issue List", () => {
       cy.contains("Page 2 of 3");
     });
   });
+});
+
+testSpinner({
+  method: "GET",
+  apiEndpoint: "https://prolog-api.profy.dev/issue?page=1",
+  pageUrl: "http://localhost:3000/dashboard/issues",
+  mockResponse: mockIssues1,
+  searchElement: "main table",
 });

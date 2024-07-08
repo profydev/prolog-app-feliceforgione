@@ -1,0 +1,11 @@
+@use "@styles/color";
+@use "@styles/space";
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: space.$s6, space.$s3, 0;
+  width: 100%;
+  height: 300px;
+}

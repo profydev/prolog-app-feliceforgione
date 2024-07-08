@@ -8,7 +8,7 @@ export function Spinner() {
         visible={true}
         height="64"
         width="64"
-        color="#9e77ed"
+        color="#7f56d9"
         secondaryColor="#f9f5ff"
         ariaLabel="oval-loading"
         wrapperStyle={{}}

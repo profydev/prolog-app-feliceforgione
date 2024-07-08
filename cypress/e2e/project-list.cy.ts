@@ -1,3 +1,4 @@
+import { testSpinner } from "cypress/support/utils";
 import mockProjects from "../fixtures/projects.json";
 
 describe("Project List", () => {
@@ -39,4 +40,12 @@ describe("Project List", () => {
         });
     });
   });
+});
+
+testSpinner({
+  method: "GET",
+  apiEndpoint: "https://prolog-api.profy.dev/project",
+  pageUrl: "http://localhost:3000/dashboard",
+  mockResponse: mockProjects,
+  searchElement: "main ul li",
 });

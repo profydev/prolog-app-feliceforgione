@@ -1,0 +1,27 @@
+@use "@styles/color";
+@use "@styles/space";
+@use "@styles/font";
+
+.alert {
+  display: flex;
+  padding: space.$s4;
+  align-items: center;
+  border-radius: space.$s2;
+  border: 1px solid color.$error-300;
+  background: color.$error-25;
+  gap: space.$s3;
+  color: color.$error-700;
+  font: font.$text-sm-medium;
+  box-sizing: border-box;
+}
+
+.message {
+  flex: 1;
+}
+
+.alertButton {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  gap: space.$s2;
+}

@@ -4,7 +4,13 @@ import { useGetProjects } from "@features/projects";
 import { useGetIssues } from "../../api/use-get-issues";
 import { IssueRow } from "./issue-row";
 import styles from "./issue-list.module.scss";
-import { Spinner } from "@features/ui";
+import {
+  Alert,
+  AlertButton,
+  AlertIcon,
+  AlertMessage,
+  Spinner,
+} from "@features/ui";
 
 export function IssueList() {
   const router = useRouter();
@@ -22,14 +28,22 @@ export function IssueList() {
     return <Spinner />;
   }
 
-  if (projects.isError) {
+  if (projects.isError || issuesPage.isError) {
     console.error(projects.error);
-    return <div>Error loading projects: {projects.error.message}</div>;
-  }
-
-  if (issuesPage.isError) {
-    console.error(issuesPage.error);
-    return <div>Error loading issues: {issuesPage.error.message}</div>;
+    return (
+      <Alert data-cy="issues-error-message">
+        <AlertIcon src={"/icons/alert-circle.svg"} />
+        <AlertMessage>There was a problem loading the data</AlertMessage>
+        <AlertButton
+          onClick={() => {
+            projects.refetch();
+            issuesPage.refetch();
+          }}
+        >
+          Try again <AlertIcon src={"/icons/arrow-right.svg"} />
+        </AlertButton>
+      </Alert>
+    );
   }
 
   const projectIdToLanguage = (projects.data || []).reduce(
@@ -42,7 +56,7 @@ export function IssueList() {
   const { items, meta } = issuesPage.data || {};
 
   return (
-    <div className={styles.container}>
+    <div data-cy="issues-list" className={styles.container}>
       <table className={styles.table}>
         <thead>
           <tr className={styles.headerRow}>

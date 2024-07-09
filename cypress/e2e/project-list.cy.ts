@@ -2,27 +2,22 @@ import { testSpinner } from "cypress/support/utils";
 import mockProjects from "../fixtures/projects.json";
 
 describe("Project List", () => {
-  beforeEach(() => {
-    // setup request mock
-    cy.intercept("GET", "https://prolog-api.profy.dev/project", {
-      fixture: "projects.json",
-    }).as("getProjects");
-
-    // open projects page
-    cy.visit("http://localhost:3000/dashboard");
-
-    // wait for request to resolve
-    cy.wait("@getProjects");
-  });
-
   context("desktop resolution", () => {
-    beforeEach(() => {
-      cy.viewport(1025, 900);
-    });
-
     it("renders the projects", () => {
       const languageNames = ["React", "Node.js", "Python"];
       const projectStatus = ["Critical", "Warning", "Stable"];
+
+      // setup request mock
+      cy.intercept("GET", "https://prolog-api.profy.dev/project", {
+        fixture: "projects.json",
+      }).as("getProjects");
+
+      // open projects page
+      cy.visit("http://localhost:3000/dashboard");
+
+      // wait for request to resolve
+      cy.wait("@getProjects");
+      cy.viewport(1025, 900);
 
       // get all project cards
       cy.get("main")
@@ -42,23 +37,25 @@ describe("Project List", () => {
 
     it("renders error message when data is not available and try again button works", () => {
       const errorMsg = "There was a problem with loading the project data";
-      cy.intercept("GET", "https://prolog-api.profy.dev/project", {
-        forceNetworkError: true,
-      }).as("getNetworkFailure");
+      cy.intercept(
+        { url: "https://prolog-api.profy.dev/project", times: 4 },
+        {
+          statusCode: 500,
+        },
+      );
 
       cy.visit("http://localhost:3000/dashboard");
 
-      cy.wait("@getNetworkFailure");
-      cy.get(`[data-cy="error"]`).should("be.visible").contains(errorMsg);
+      cy.get(`[data-cy="projects-error-message"]`, { timeout: 15000 })
+        .should("be.visible")
+        .contains(errorMsg)
+        .get("button")
+        .contains("Try again")
+        .click();
 
-      cy.intercept("GET", "https://prolog-api.profy.dev/project", {
-        fixture: "projects.json",
-      }).as("getProjects");
-
-      cy.get("img[alt='Try again']").click();
       cy.wait(500);
 
-      cy.get(`[data-cy="error"]`).should("not.exist");
+      cy.get(`[data-cy="projects-error-message"]`).should("not.exist");
       cy.get(`[data-cy="project-list"]`).should("be.visible");
     });
   });

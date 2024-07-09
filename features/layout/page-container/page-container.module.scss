@@ -34,7 +34,7 @@
   flex: 1;
   margin-top: misc.$header-height;
   padding: space.$s8 space.$s3;
-  background: white;
+  background: color.$white;
 
   @media (min-width: breakpoint.$desktop) {
     min-height: calc(

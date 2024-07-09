@@ -1,4 +1,4 @@
-import { Button } from "../button";
+import { UnstyledButton } from "../button";
 import styles from "./alert.module.scss";
 import classNames from "classnames";
 
@@ -14,12 +14,12 @@ export function AlertButton({
   onClick,
 }: AlertButtonProps) {
   return (
-    <Button
+    <UnstyledButton
       className={classNames(styles.alertButton, className)}
       onClick={onClick}
       type="button"
     >
       {children}
-    </Button>
+    </UnstyledButton>
   );
 }

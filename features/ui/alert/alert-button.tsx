@@ -1,6 +1,4 @@
-import { UnstyledButton } from "../button";
-import styles from "./alert.module.scss";
-import classNames from "classnames";
+import { Button, ButtonColor, ButtonSize, ButtonVariant } from "../button";
 
 interface AlertButtonProps {
   children: React.ReactNode;
@@ -8,18 +6,16 @@ interface AlertButtonProps {
   onClick?: () => void;
 }
 
-export function AlertButton({
-  children,
-  className,
-  onClick,
-}: AlertButtonProps) {
+export function AlertButton({ children, onClick }: AlertButtonProps) {
   return (
-    <UnstyledButton
-      className={classNames(styles.alertButton, className)}
+    <Button
+      color={ButtonColor.Error}
+      size={ButtonSize.sm}
+      variant={ButtonVariant.Empty}
       onClick={onClick}
       type="button"
     >
       {children}
-    </UnstyledButton>
+    </Button>
   );
 }

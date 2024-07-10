@@ -6,6 +6,7 @@ import {
   AlertButton,
   AlertIcon,
   AlertMessage,
+  ButtonIcon,
   Spinner,
 } from "@features/ui";
 
@@ -25,7 +26,7 @@ export function ProjectList() {
           There was a problem with loading the project data
         </AlertMessage>
         <AlertButton onClick={refetch}>
-          Try again <AlertIcon src={"/icons/arrow-right.svg"} />
+          Try again <ButtonIcon src={"/icons/arrow-right.svg"} />
         </AlertButton>
       </Alert>
     );

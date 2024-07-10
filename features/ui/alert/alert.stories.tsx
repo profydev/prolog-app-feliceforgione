@@ -1,6 +1,7 @@
 import React from "react";
 import { Meta, StoryFn } from "@storybook/react";
 import { Alert, AlertIcon, AlertMessage, AlertButton } from ".";
+import { ButtonIcon } from "../button";
 
 export default {
   title: "UI/Alert",
@@ -18,7 +19,7 @@ const Template: StoryFn<typeof Alert> = () => (
       There was a problem with loading the project data
     </AlertMessage>
     <AlertButton onClick={() => alert("clicked")}>
-      Try again <AlertIcon src={"/icons/arrow-right.svg"} />
+      Try again <ButtonIcon src={"/icons/arrow-right.svg"} />
     </AlertButton>
   </Alert>
 );

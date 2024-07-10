@@ -1,6 +1,7 @@
 import { ButtonHTMLAttributes } from "react";
 import classNames from "classnames";
 import styles from "./button.module.scss";
+import { UnstyledButton } from "./unstyled-button";
 
 export enum ButtonSize {
   sm = "sm",
@@ -10,19 +11,16 @@ export enum ButtonSize {
 }
 
 export enum ButtonColor {
-  primary = "primary",
-  secondary = "secondary",
-  gray = "gray",
-  empty = "empty",
-  emptygray = "emptyGray",
-  error = "error",
-  emptyerror = "emptyError",
+  Primary = "primary",
+  Secondary = "secondary",
+  Gray = "gray",
+  Error = "error",
 }
 
-export enum IconPosition {
-  leading = "leading",
-  trailing = "trailing",
-  only = "only",
+export enum ButtonVariant {
+  Default = "default",
+  Empty = "empty",
+  IconOnly = "iconOnly",
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -30,9 +28,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   size?: ButtonSize;
   color?: ButtonColor;
-  disabled?: boolean;
+  variant?: ButtonVariant;
   icon?: React.ReactNode;
-  iconPosition?: IconPosition;
 }
 
 /* function classNamePropPrefix<K extends keyof ButtonProps>(
@@ -45,31 +42,23 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export function Button({
   className,
   size = ButtonSize.md,
-  color = ButtonColor.primary,
-  disabled = false,
+  color = ButtonColor.Primary,
+  variant = ButtonVariant.Default,
   children,
-  icon,
-  iconPosition = IconPosition.leading,
   ...otherProps
 }: ButtonProps) {
   return (
-    <button
-      disabled={disabled}
-      {...otherProps}
+    <UnstyledButton
       className={classNames(
         styles.button,
         styles[size],
         styles[color],
-
+        styles[variant],
         className,
       )}
+      {...otherProps}
     >
-      {icon}
-      <span
-        className={classNames(styles.content, icon && styles[iconPosition])}
-      >
-        {children}
-      </span>
-    </button>
+      {children}
+    </UnstyledButton>
   );
 }

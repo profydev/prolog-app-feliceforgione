@@ -5,7 +5,7 @@ import classNames from "classnames";
 import { NavigationContext } from "./navigation-context";
 import { MenuItemButton } from "./menu-item-button";
 import { MenuItemLink } from "./menu-item-link";
-import { Button } from "@features/ui";
+import { UnstyledButton } from "@features/ui";
 import styles from "./sidebar-navigation.module.scss";
 
 const menuItems = [
@@ -59,7 +59,7 @@ export function SidebarNavigation({ className }: Props) {
               isSidebarCollapsed && styles["isCollapsed"],
             )}
           />
-          <Button
+          <UnstyledButton
             onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
             className={styles.menuButton}
           >
@@ -69,7 +69,7 @@ export function SidebarNavigation({ className }: Props) {
               alt={isMobileMenuOpen ? "close menu" : "open menu"}
               className={styles.menuIcon}
             />
-          </Button>
+          </UnstyledButton>
         </header>
         <div
           className={classNames(

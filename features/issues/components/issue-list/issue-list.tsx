@@ -9,6 +9,7 @@ import {
   AlertButton,
   AlertIcon,
   AlertMessage,
+  ButtonIcon,
   Spinner,
 } from "@features/ui";
 
@@ -40,7 +41,7 @@ export function IssueList() {
             issuesPage.refetch();
           }}
         >
-          Try again <AlertIcon src={"/icons/arrow-right.svg"} />
+          Try again <ButtonIcon src={"/icons/arrow-right.svg"} />
         </AlertButton>
       </Alert>
     );
